@@ -2,9 +2,9 @@ using System;
 using Xunit;
 using FluentAssertions;
 
-namespace AlinSpace.FluentReturns
+namespace AlinSpace.FluentResults.Tests
 {
-    public class Result
+    public partial class Result
     {
         [Fact]
         public void Result_1()
@@ -26,6 +26,16 @@ namespace AlinSpace.FluentReturns
             // Assert
             Assert.Throws<Exception>(() => result.Value);
             result.HasValue.Should().BeFalse();
+        }
+
+        [Fact]
+        public void Result_3()
+        {
+            // Act
+            int result = Result<int>.Return(5);
+
+            // Assert
+            result.Should().Be(5);
         }
 
         [Fact]

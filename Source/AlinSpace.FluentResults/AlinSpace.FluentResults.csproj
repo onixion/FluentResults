@@ -13,6 +13,7 @@
     <Copyright>Copyright © 2021 Alin Andersen</Copyright>
     <Description>Fluent Results library.</Description>
     <PackageTags>fluent, results, result, optional, option, fluent-api, fluent-design</PackageTags>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

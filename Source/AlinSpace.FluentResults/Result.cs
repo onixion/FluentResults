@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace AlinSpace.FluentReturns
+namespace AlinSpace.FluentResults
 {
     /// <summary>
     /// Result.
@@ -71,6 +71,15 @@ namespace AlinSpace.FluentReturns
         }
 
         /// <summary>
+        /// Implicit cast to type <typeparamref name="TReturn"/>.
+        /// </summary>
+        /// <param name="result">Result to cast.</param>
+        public static implicit operator TReturn(Result<TReturn> result)
+        {
+            return result.Value;
+        }
+
+        /// <summary>
         /// Get hash code.
         /// </summary>
         public override int GetHashCode()
@@ -83,6 +92,40 @@ namespace AlinSpace.FluentReturns
             {
                 return 0;
             }
+        }
+
+        /// <summary>
+        /// Equals.
+        /// </summary>
+        public override bool Equals(object obj)
+        {
+            if (HasValue)
+            {
+                if (obj is TReturn returnValue)
+                {
+                    return Value.Equals(returnValue);
+                }
+
+                if (obj is Result<TReturn> result)
+                {
+                    if (result.HasValue)
+                    {
+                        return Value.Equals(result.Value);
+                    }
+                }
+            }
+            else
+            {
+                if (obj is Result<TReturn> result)
+                {
+                    if (!result.HasValue)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -201,6 +244,15 @@ namespace AlinSpace.FluentReturns
         }
 
         /// <summary>
+        /// Implicit cast to type <typeparamref name="TReturn"/>.
+        /// </summary>
+        /// <param name="result">Result to cast.</param>
+        public static implicit operator TReturn(Result<TReturn, TError> result)
+        {
+            return result.Value;
+        }
+
+        /// <summary>
         /// Get hash code.
         /// </summary>
         public override int GetHashCode()
@@ -213,6 +265,40 @@ namespace AlinSpace.FluentReturns
             {
                 return ErrorValueOrDefault.GetHashCode();
             }
+        }
+
+        /// <summary>
+        /// Equals.
+        /// </summary>
+        public override bool Equals(object obj)
+        {
+            if (HasValue)
+            {
+                if (obj is TReturn returnResult)
+                {
+                    return Value.Equals(returnResult);
+                }
+
+                if (obj is Result<TReturn, TError> result)
+                {
+                    if (result.HasValue)
+                    {
+                        return Value.Equals(result.Value);
+                    }
+                }
+            }
+            else
+            {
+                if (obj is Result<TReturn, TError> result)
+                {
+                    if (!result.HasValue)
+                    {
+                        return ErrorValue.Equals(result.ErrorValue);
+                    }
+                }
+            }
+
+            return false;
         }
 
         /// <summary>
