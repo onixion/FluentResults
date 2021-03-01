@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlinSpace.FluentResults", "AlinSpace.FluentResults\AlinSpace.FluentResults.csproj", "{72CBF4A5-C3AA-482E-BB28-52DFBE70F9FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlinSpace.FluentResults.Tests", "AlinSpace.FluentResults.Tests\AlinSpace.FluentResults.Tests.csproj", "{FA6AECF4-D967-4053-9726-B3332EA11812}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{72CBF4A5-C3AA-482E-BB28-52DFBE70F9FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72CBF4A5-C3AA-482E-BB28-52DFBE70F9FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72CBF4A5-C3AA-482E-BB28-52DFBE70F9FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72CBF4A5-C3AA-482E-BB28-52DFBE70F9FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA6AECF4-D967-4053-9726-B3332EA11812}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA6AECF4-D967-4053-9726-B3332EA11812}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA6AECF4-D967-4053-9726-B3332EA11812}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA6AECF4-D967-4053-9726-B3332EA11812}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0BB60EEB-2B42-42AF-A317-137ABB17BDB1}
+	EndGlobalSection
+EndGlobal

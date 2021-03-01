@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Authors>Alin Andersen</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/onixion/FluentResults</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/onixion/FluentResults</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIcon>Icon.jpg</PackageIcon>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Copyright>Copyright © 2021 Alin Andersen</Copyright>
+    <Description>Fluent Results library.</Description>
+    <PackageTags>fluent, results, result, optional, option, fluent-api, fluent-design</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Icon.jpg">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
