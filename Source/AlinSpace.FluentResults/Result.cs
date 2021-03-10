@@ -71,12 +71,12 @@ namespace AlinSpace.FluentResults
         }
 
         /// <summary>
-        /// Implicit cast to type <typeparamref name="TReturn"/>.
+        /// Implicit cast.
         /// </summary>
-        /// <param name="result">Result to cast.</param>
-        public static implicit operator TReturn(Result<TReturn> result)
+        /// <param name="result">Result to wrap.</param>
+        public static implicit operator Result<TReturn>(TReturn result)
         {
-            return result.Value;
+            return Return(result);
         }
 
         /// <summary>
@@ -152,6 +152,8 @@ namespace AlinSpace.FluentResults
     [DebuggerDisplay("HasValue={HasValue} Value={ValueOrDefault} Error={ErrorValueOrDefault}")]
     public class Result<TReturn, TError>
     {
+        #region Properties
+
         /// <summary>
         /// Value.
         /// </summary>
@@ -194,6 +196,10 @@ namespace AlinSpace.FluentResults
         /// Has value.
         /// </summary>
         public bool HasValue { get; private set; }
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// Return value.
@@ -244,12 +250,21 @@ namespace AlinSpace.FluentResults
         }
 
         /// <summary>
-        /// Implicit cast to type <typeparamref name="TReturn"/>.
+        /// Implicit cast.
         /// </summary>
-        /// <param name="result">Result to cast.</param>
-        public static implicit operator TReturn(Result<TReturn, TError> result)
+        /// <param name="result">Result to wrap.</param>
+        public static implicit operator Result<TReturn, TError>(TReturn result)
         {
-            return result.Value;
+            return Return(result);
+        }
+
+        /// <summary>
+        /// Implicit cast.
+        /// </summary>
+        /// <param name="result">Result to wrap.</param>
+        public static implicit operator Result<TReturn, TError>(TError result)
+        {
+            return Error(result);
         }
 
         /// <summary>
@@ -315,5 +330,7 @@ namespace AlinSpace.FluentResults
                 return ErrorValueOrDefault.ToString();
             }
         }
+
+        #endregion
     }
 }

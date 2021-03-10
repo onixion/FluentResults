@@ -29,16 +29,6 @@ namespace AlinSpace.FluentResults.Tests
         }
 
         [Fact]
-        public void Result_3()
-        {
-            // Act
-            int result = Result<int>.Return(5);
-
-            // Assert
-            result.Should().Be(5);
-        }
-
-        [Fact]
         public void ResultError_1()
         {
             // Act
