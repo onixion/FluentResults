@@ -4,20 +4,17 @@ using System.Diagnostics;
 namespace AlinSpace.FluentResults
 {
     /// <summary>
-    /// Result.
+    /// Optional.
     /// </summary>
-    /// <typeparam name="TReturn">Type of the return value.</typeparam>
-    /// <typeparam name="TError">Type of the error value.</typeparam>
-    [DebuggerDisplay("HasValue={HasValue} Value={ValueOrDefault} Error={ErrorValueOrDefault}")]
-    public class Result<TReturn, TError>
+    /// <typeparam name="TReturn">Type of return value.</typeparam>
+    [DebuggerDisplay("HasValue={HasValue} ValueOrDefault={ValueOrDefault}")]
+    public class Optional<TReturn>
     {
-        #region Properties
-
         /// <summary>
         /// Value.
         /// </summary>
-        public TReturn Value 
-        { 
+        public TReturn Value
+        {
             get
             {
                 if (!HasValue)
@@ -33,41 +30,18 @@ namespace AlinSpace.FluentResults
         public TReturn ValueOrDefault { get; private set; } = default;
 
         /// <summary>
-        /// Error value.
-        /// </summary>
-        public TError ErrorValue
-        {
-            get
-            {
-                if (HasValue)
-                    throw new Exception();
-
-                return ErrorValueOrDefault;
-            }
-        }
-        
-        /// <summary>
-        /// Error value or default value.
-        /// </summary>
-        public TError ErrorValueOrDefault { get; private set; } = default;
-
-        /// <summary>
         /// Has value.
         /// </summary>
         public bool HasValue { get; private set; }
 
-        #endregion
-
-        #region Methods
-
         /// <summary>
         /// Return value.
         /// </summary>
-        /// <param name="returnValue">Return value.</param>
+        /// <param name="returnValue">Value to return.</param>
         /// <returns>Result with return value.</returns>
-        public static Result<TReturn, TError> Return(TReturn returnValue)
+        public static Optional<TReturn> Return(TReturn returnValue)
         {
-            return new Result<TReturn, TError>
+            return new Optional<TReturn>
             {
                 ValueOrDefault = returnValue,
                 HasValue = true,
@@ -75,15 +49,13 @@ namespace AlinSpace.FluentResults
         }
 
         /// <summary>
-        /// Return error.
+        /// Return none.
         /// </summary>
-        /// <param name="errorValue">Error value.</param>
-        /// <returns>Result with error value.</returns>
-        public static Result<TReturn, TError> Error(TError errorValue)
+        /// <returns>Result with no value.</returns>
+        public static Optional<TReturn> None()
         {
-            return new Result<TReturn, TError>
+            return new Optional<TReturn>
             {
-                ErrorValueOrDefault = errorValue,
                 HasValue = false,
             };
         }
@@ -99,31 +71,12 @@ namespace AlinSpace.FluentResults
         }
 
         /// <summary>
-        /// Get error or default value.
-        /// </summary>
-        /// <param name="defaultValue">Optional default value.</param>
-        /// <returns>Error or default value.</returns>
-        public TError ErrorOr(TError defaultValue = default)
-        {
-            return !HasValue ? ErrorValueOrDefault : defaultValue;
-        }
-
-        /// <summary>
         /// Implicit cast.
         /// </summary>
         /// <param name="result">Result to wrap.</param>
-        public static implicit operator Result<TReturn, TError>(TReturn result)
+        public static implicit operator Optional<TReturn>(TReturn result)
         {
             return Return(result);
-        }
-
-        /// <summary>
-        /// Implicit cast.
-        /// </summary>
-        /// <param name="result">Result to wrap.</param>
-        public static implicit operator Result<TReturn, TError>(TError result)
-        {
-            return Error(result);
         }
 
         /// <summary>
@@ -137,7 +90,7 @@ namespace AlinSpace.FluentResults
             }
             else
             {
-                return ErrorValueOrDefault.GetHashCode();
+                return 0;
             }
         }
 
@@ -148,12 +101,12 @@ namespace AlinSpace.FluentResults
         {
             if (HasValue)
             {
-                if (obj is TReturn returnResult)
+                if (obj is TReturn returnValue)
                 {
-                    return Value.Equals(returnResult);
+                    return Value.Equals(returnValue);
                 }
 
-                if (obj is Result<TReturn, TError> result)
+                if (obj is Optional<TReturn> result)
                 {
                     if (result.HasValue)
                     {
@@ -163,11 +116,11 @@ namespace AlinSpace.FluentResults
             }
             else
             {
-                if (obj is Result<TReturn, TError> result)
+                if (obj is Optional<TReturn> result)
                 {
                     if (!result.HasValue)
                     {
-                        return ErrorValue.Equals(result.ErrorValue);
+                        return true;
                     }
                 }
             }
@@ -186,10 +139,8 @@ namespace AlinSpace.FluentResults
             }
             else
             {
-                return ErrorValueOrDefault.ToString();
+                return string.Empty;
             }
         }
-
-        #endregion
     }
 }

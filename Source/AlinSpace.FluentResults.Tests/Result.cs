@@ -1,33 +1,14 @@
+using FluentAssertions;
 using System;
 using Xunit;
-using FluentAssertions;
 
 namespace AlinSpace.FluentResults.Tests
 {
+    /// <summary>
+    /// Tests for <see cref="Result{TReturn, TError}"/>.
+    /// </summary>
     public partial class Result
     {
-        [Fact]
-        public void Result_1()
-        {
-            // Act
-            var result = Result<int>.Return(5);
-
-            // Assert
-            result.HasValue.Should().BeTrue();
-            result.Value.Should().Be(5);
-        }
-
-        [Fact]
-        public void Result_2()
-        {
-            // Act
-            var result = Result<int>.None();
-
-            // Assert
-            Assert.Throws<Exception>(() => result.Value);
-            result.HasValue.Should().BeFalse();
-        }
-
         [Fact]
         public void ResultError_1()
         {

@@ -3,21 +3,10 @@
 namespace AlinSpace.FluentResults
 {
     /// <summary>
-    /// Extensions for <see cref="Result{TReturn}"/> and <see cref="Result{TReturn, TError}"/>.
+    /// Extensions for <see cref="Optional{TReturn}"/> and <see cref="Result{TReturn, TError}"/>.
     /// </summary>
     public static class ResultExtensions
     {
-        /// <summary>
-        /// Construct result from return value.
-        /// </summary>
-        /// <typeparam name="TReturn">Type of return value.</typeparam>
-        /// <param name="returnValue">Return value.</param>
-        /// <returns>Result.</returns>
-        public static Result<TReturn> ToResult<TReturn>(this TReturn returnValue)
-        {
-            return Result<TReturn>.Return(returnValue);
-        }
-
         /// <summary>
         /// Construct result from return value.
         /// </summary>
